@@ -117,7 +117,7 @@ function parse_unicode($elt) {
 function parse_char_name($elt) {
 	$lines = array_filter(array_map('trim', explode("\n", $elt->textContent)));
 
-	if(count($lines[0])>0) {
+	if(strlen($lines[0])>0) {
 		$result['title'] = $lines[0];
 		unset($lines[0]);
 		$result['desc'] = join("\n", $lines);
@@ -181,7 +181,7 @@ function filter_only_kaomoji($mapping) {
 
 		if(isset($map['docomo']['kaomoji'])
 			&& isset($map['au']['kaomoji'])
-			&& isset($map['softbank']['kaomoji'])) 
+			&& isset($map['softbank']['kaomoji']))
 		{
 			continue;
 		}
@@ -198,9 +198,9 @@ function filter_chars_group($mapping) {
 	$result = array();
 	foreach($mapping as $map) {
 
-		if( @preg_match('/\+$/', $map['docomo']['number']) 
-			|| @preg_match('/\+$/', $map['au']['number']) 
-			|| @preg_match('/\+$/', $map['softbank']['number']) 
+		if( @preg_match('/\+$/', $map['docomo']['number'])
+			|| @preg_match('/\+$/', $map['au']['number'])
+			|| @preg_match('/\+$/', $map['softbank']['number'])
 		){
 			continue;
 		}
@@ -217,17 +217,17 @@ function fix_geta_mark($mapping) {
 
 	foreach($mapping as $map) {
 
-		if(isset($map['docomo']['kaomoji']) 
+		if(isset($map['docomo']['kaomoji'])
 			&& $map['docomo']['kaomoji'] == '〓') {
 			$map['docomo']['kaomoji'] = '';
 		}
 
-		if(isset($map['au']['kaomoji']) 
+		if(isset($map['au']['kaomoji'])
 			&& $map['au']['kaomoji'] == '〓') {
 			$map['au']['kaomoji'] = '';
 		}
 
-		if(isset($map['softbank']['kaomoji']) 
+		if(isset($map['softbank']['kaomoji'])
 			&& $map['softbank']['kaomoji'] == '〓') {
 			$map['softbank']['kaomoji'] = '';
 		}
